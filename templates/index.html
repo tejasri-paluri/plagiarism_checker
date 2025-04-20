@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plagiarism & AI Text Detector</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f4f4f4; }
+        .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 8px; }
+        .result { background: #e9e9e9; margin-top: 20px; padding: 15px; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Plagiarism & AI-Generated Text Checker</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="document" accept=".txt" required><br><br>
+            <button type="submit">Check Document</button>
+        </form>
+
+        {% if result %}
+            <div class="result">
+                <p><strong>Plagiarism Detected:</strong> {{ result.plagiarized }}</p>
+                <p><strong>Similarity Score:</strong> {{ result.similarity_score }}</p>
+                <p><strong>AI-Generated Text:</strong> {{ result.ai_detected }}</p>
+                <p><strong>AI-Likeness Score:</strong> {{ result.ai_score }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
